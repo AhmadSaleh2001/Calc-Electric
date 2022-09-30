@@ -4,9 +4,19 @@ let Ampere = document.getElementById("Ampere");
 
 let AllInputs = document.querySelectorAll("input");
 let Answer = document.querySelector(".badge");
+let btn = document.querySelector(".btn");
 
 function Calc() {
-  return ((V0.value || 1) - (V1.value || 1)) / (Ampere.value || 1);
+  let Ans = ((V0.value || 1) - (V1.value || 1)) / (Ampere.value || 1);
+
+  Ans = Math.round(Ans * 1000.0) / 1000.0;
+  return Ans;
+}
+
+function ClearAll() {
+  AllInputs.forEach((Item) => {
+    Item.value = "";
+  });
 }
 
 AllInputs.forEach((Item) => {
@@ -14,3 +24,4 @@ AllInputs.forEach((Item) => {
     Answer.textContent = Calc();
   });
 });
+btn.addEventListener("click", ClearAll);
